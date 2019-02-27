@@ -1,0 +1,14 @@
+body {
+  background-image: url('https://www.maxpixel.net/static/photo/1x/Star-Night-Night-Sky-Sky-Background-Starry-Sky-2978816.jpg');
+  color: white;
+  font-size: 20px;
+}
+
+.formy {
+  padding: 100px;
+  text-align: center;
+}
+
+.resulty {
+  text-align: center;
+}

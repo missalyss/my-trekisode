@@ -1,0 +1,14 @@
+{
+  "name": "my-trekisode",
+  "version": "1.0.0",
+  "description": "to provide users with useless star trek information; to boldly go where no one has gone beore",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "aevans",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}
