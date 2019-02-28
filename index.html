@@ -8,8 +8,17 @@
     <link rel="stylesheet" href="./main.css">
   </head>
   <body>
+    <h3>Space, the final frontier...</h3>
     <form class="formy" action="index.html" method="post">
-      <input id="bday" type="date" name="" value="2017-10-01">
+      <p>Put your birthday in to see your special Star Trekisode</p>
+      <label for="bmonth">MM</label>
+      <label for="bday">DD</label>
+      <label for="byear">YYYY</label>
+      <br>
+      <input id="bmonth" type="number" name="bmonth" value="10" min="1" max="12">
+      <input id="bday" type="number" name="bday" value="17" min="01" max="31">
+      <input id="byear" type="number" name="byear" value="2017" min="1964" max="2019">
+      <br>
       <button type="submit" name="button">Submit</button>
     </form>
 

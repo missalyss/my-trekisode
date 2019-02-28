@@ -1,14 +1,32 @@
 body {
-  background-image: url('https://www.maxpixel.net/static/photo/1x/Star-Night-Night-Sky-Sky-Background-Starry-Sky-2978816.jpg');
+  background-image: url('./images/black-stars.png');
   color: white;
   font-size: 20px;
+  font-family: 'futura', sans-serif;
+  text-align: center;
 }
 
 .formy {
   padding: 100px;
-  text-align: center;
 }
 
 .resulty {
   text-align: center;
+  transition: 300ms ease-in;
+}
+
+.resulty-disappear {
+  transition: opacity 3s ease-in-out;
+  opacity: 0;
+}
+
+.resulty-appear {
+}
+
+#bmonth, #bday {
+  max-width: 30px;
+}
+
+#byear {
+  max-width: 60px;
 }
