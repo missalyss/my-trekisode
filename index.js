@@ -9,18 +9,18 @@ $('.formy').on('submit', e => {
     const $byear = $('#byear').val()
 
     const trueDate = `${$byear}-${$bmonth}-${$bday}`;
-    const weekBefore = `${$byear}-${$bmonth}-${$bday - 7}`;
-    const weekAfter = `${$byear}-${$bmonth}-${$bday + 7}`
-    console.log({weekBefore});
-    console.log({weekAfter});
+    const begOfMonth = `${$byear}-${$bmonth}-01`;
+    const endOfMonth = `${$byear}-${$bmonth}-29`
+    console.log({begOfMonth});
+    console.log({endOfMonth});
     console.log('alyssa');
     $.ajax({
         url: `http://stapi.co/api/v1/rest/episode/search`,
         method: "POST",
         dataType: 'json',
         data: {
-          usAirDateFrom: weekBefore,
-          usAirDateTo: weekAfter
+          usAirDateFrom: begOfMonth,
+          usAirDateTo: endOfMonth
         }
       })
       .then(data => {
@@ -37,10 +37,10 @@ $('.formy').on('submit', e => {
           return;
         }
         const correctAnswer = data.episodes[0];
-        const { series, season, title } = correctAnswer;
-        $('.resulty').append(`<p class="enbold">YOUR RESULT:</p> <p>${series.title}</p> <p>${season.title}</p> <p><span class="enbold">TITLE:</span> ${title}</p>`)
+        const { series, season, title, usAirDate } = correctAnswer;
+        $('.resulty').append(`<p class="enbold">NOT QUITE</p> <p>The closest we could find was: ${series.title}</p> <p>${season.title}</p> <p><span class="enbold">TITLE:</span> ${title}, which aired on ${usAirDate}</p>`)
       })
       .catch(err => {
-        console.error('red alert! ', err);
+        console.error('red alert! ', err.status, err.responseText);
       });
     })
