@@ -13,7 +13,7 @@ $('.formy').on('submit', e => {
     const weekAfter = `${$byear}-${$bmonth}-${$bday + 7}`
     console.log({weekBefore});
     console.log({weekAfter});
-
+    console.log('alyssa');
     $.ajax({
         url: `http://stapi.co/api/v1/rest/episode/search`,
         method: "POST",
