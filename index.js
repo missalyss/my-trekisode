@@ -49,7 +49,7 @@ $('.formy').on('submit', e => {
         $('.instructions').empty()
         $('.resulty').empty()
         if (!data.episodes.length) {
-          $('.resulty').append(`DAMMIT, JIM! Nothing aired on that day. Check the days before and after`)
+          $('.resulty').append(`DAMMIT, JIM! Nothing aired on that day or month either. Check different years!`)
           return;
         }
         console.log('DATA: ', data.episodes);
