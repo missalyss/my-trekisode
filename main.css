@@ -13,6 +13,7 @@ body {
 }
 
 .resulty {
+  font-size: 24px;
   text-align: center;
   transition: 300ms ease-in;
 }

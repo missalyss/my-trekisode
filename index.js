@@ -24,6 +24,7 @@ $('.formy').on('submit', e => {
         }
       })
       .then(data => {
+        $('.instructions').empty()
         $('.resulty').empty()
         if (!data.episodes.length) {
           $('.resulty').append(`DAMMIT, JIM! Nothing aired on that day. Check the days before and after`)
