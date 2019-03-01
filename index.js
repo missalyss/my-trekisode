@@ -1,26 +1,48 @@
-const dateFormatter = (day, month, math) => {
+const dateFormatter = (day, month, year) => {
+  console.log({day, month});
+  let fDay = day;
+  let fMonth = month;
+
+  if (day < 10) {
+    fDay = `0${day}`;
+  }
+
+  if (month < 10) {
+    fMonth = `0${month}`
+  }
+
+  let eom = 30;
+
+  if (month === 2) {
+    eom = 28
+  }
+
+  if (month === (1 || 3 || 5 || 7 || 8 || 10 || 12)) {
+    eom = 31
+  }
+
+  const trueDate = `${year}-${fMonth}-${fDay}`;
+  const begOfMonth = `${year}-${fMonth}-01`;
+  const endOfMonth = `${year}-${fMonth}-${eom}`
+  return { trueDate, begOfMonth, endOfMonth }
 }
 
 
 $('.formy').on('submit', e => {
     e.preventDefault()
     const $bday = parseInt($('#bday').val(), 10);
-    const $bmonth = $('#bmonth').val()
-    const $byear = $('#byear').val()
+    const $bmonth = parseInt($('#bmonth').val())
+    const $byear = parseInt($('#byear').val())
 
-    const trueDate = `${$byear}-${$bmonth}-${$bday}`;
-    const begOfMonth = `${$byear}-${$bmonth}-01`;
-    const endOfMonth = `${$byear}-${$bmonth}-29`
-    console.log({begOfMonth});
-    console.log({endOfMonth});
-    console.log('alyssa');
+    const formatted = dateFormatter($bday, $bmonth, $byear)
+    console.log({formatted});
     $.ajax({
         url: `http://stapi.co/api/v1/rest/episode/search`,
         method: "POST",
         dataType: 'json',
         data: {
-          usAirDateFrom: begOfMonth,
-          usAirDateTo: endOfMonth
+          usAirDateFrom: formatted.begOfMonth,
+          usAirDateTo: formatted.endOfMonth
         }
       })
       .then(data => {
@@ -30,7 +52,8 @@ $('.formy').on('submit', e => {
           $('.resulty').append(`DAMMIT, JIM! Nothing aired on that day. Check the days before and after`)
           return;
         }
-        const perfectFit = data.episodes.find(ep => ep.usAirDate === trueDate)
+        console.log('DATA: ', data.episodes);
+        const perfectFit = data.episodes.find(ep => ep.usAirDate === formatted.trueDate)
         if (perfectFit) {
           const { series, season, title } = perfectFit;
           $('.resulty').append(`<p class="enbold">THE STARS ALIGN!</p> <p>On this date, ${title} was aired.</p> <p>${series.title} ${season.title}.</p>`)
